@@ -50,6 +50,10 @@ class Persona{
         }
     }
 
+    saludarPersona(persona){
+        console.log(`Hola ${persona.nombre}, ¿cómo va todo?`);
+    }
+
     conocerMejorAmigo(persona){
         this.mejorAmigo = persona;
     }
