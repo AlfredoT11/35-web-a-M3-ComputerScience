@@ -134,3 +134,26 @@ console.log('---------------------------------');
 console.log('Utilizando polimorfismo');
 combatirConPolimorfismo(pokemon2, pokemonElectricidad);
 combatirConPolimorfismo(pokemonElectricidad, pokemon2);
+
+// Diferencias entre objecto literal y objeto de POO.
+// Objecto literal es tipo de dato de JS que nos permite trabajar con el esquema clave-valor.
+let pokemonAgua = {
+    nombre: 'Tortoise',
+    nivelAtaque: 50,
+    nivelDeVida: 400,
+    atacar: () => {
+        console.log('Atacando con agua');
+    }
+}
+
+pokemonAgua.nombre;
+pokemonAgua.atacar();
+
+// Objetos de POO.
+// Tienen las siguientes características
+/*
+    - Se crean a partir de una clase.
+    - Se deben instanciar.
+    - La clase necesita un constructor para crearlos.
+    - Podemos crear diferentes objetos de esa clase a diferencia de los objetos literal. 
+*/
