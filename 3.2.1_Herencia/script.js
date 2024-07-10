@@ -40,6 +40,11 @@ class PokemonFuego extends Pokemon{
         pokemon.nivelDeVida -= this.nivelAtaque * 1.5;
         console.log(`El nivel de vida de ${pokemon.nombre} DESPUÉS del ataque es: ${pokemon.nivelDeVida}`);
     }
+
+    // Sobreescritura -> Redefinir el comportamiento de un método de la clase padre en la clase hija.
+    atacar(pokemon){
+        this.lanzarFuego(pokemon);
+    }
 }
 
 class PokemonElectricidad extends Pokemon{
@@ -57,6 +62,10 @@ class PokemonElectricidad extends Pokemon{
         console.log(`Electrocutando con nivel de ataque ${this.nivelAtaque}...`);
         pokemon.nivelDeVida -= this.nivelAtaque * 1.8;
         console.log(`El nivel de vida de ${pokemon.nombre} DESPUÉS del ataque es: ${pokemon.nivelDeVida}`);
+    }
+
+    atacar(pokemon){
+        this.electrocutar(pokemon);
     }
 }
 
@@ -97,3 +106,31 @@ if(typeof pokemon2 == 'object'){
 //      Esta función debe detectar automáticamente el tipo de Pokemon que recibe como parámetro y atacar con su ataque especial.
 //      Pista: Investigar la palabra reservada typeof
 //      Pista: alternativa: instanceof
+
+function combatir(pokemonAtacante, pokemonAtacado){
+    // instanceof -> <objecto> instanceof <La clase a revisar>
+    if(pokemonAtacante instanceof PokemonFuego){
+        pokemonAtacante.lanzarFuego(pokemonAtacado);
+    }else if(pokemonAtacante instanceof PokemonElectricidad){
+        pokemonAtacante.electrocutar(pokemonAtacado);
+    }else{
+        pokemonAtacante.atacar(pokemonAtacado);
+    }
+}
+
+function combatirConPolimorfismo(pokemonAtacante, pokemonAtacado){
+    pokemonAtacante.atacar(pokemonAtacado);
+}
+
+let pokemonElectricidad = new PokemonElectricidad('Raichu', 50, 170, 'Naranja');
+
+combatir(pokemon2, pokemonElectricidad);
+combatir(pokemonElectricidad, pokemon2);
+
+pokemon2.atacar(pokemonElectricidad);
+pokemonElectricidad.atacar(pokemon2);
+
+console.log('---------------------------------');
+console.log('Utilizando polimorfismo');
+combatirConPolimorfismo(pokemon2, pokemonElectricidad);
+combatirConPolimorfismo(pokemonElectricidad, pokemon2);
