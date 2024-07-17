@@ -74,13 +74,13 @@ class ArbolBinario{
         return null;
     }
 
-    inorden(nodo){
+    inorden(nodo, arreglo){
         // Condición de paro del método recursivo.
         if(nodo == null) return;
 
-        this.inorden(nodo.izquierdo);
-        console.log(nodo.valor);
-        this.inorden(nodo.derecho);
+        this.inorden(nodo.izquierdo, arreglo);
+        arreglo.push(nodo.valor);
+        this.inorden(nodo.derecho, arreglo);
     }
 
     preorden(nodo){
@@ -102,7 +102,7 @@ class ArbolBinario{
 }
 
 let arbolBinario = new ArbolBinario();
-let valoresArbol = [5, 10, 21, 4, 8, 1, 5, 4];
+let valoresArbol = [5, 10, 21, 4, 8, 1, 5, 4, 99, -2, 400, -5, 3, 4, 9, 1, 17];
 
 for(let i = 0; i < valoresArbol.length; i++){
     arbolBinario.insertar(valoresArbol[i]);
@@ -146,4 +146,19 @@ console.log(`El factorial de ${factorialACalcular} es ${factorial(factorialACalc
 factorialACalcular = 170;
 console.log(`El factorial de ${factorialACalcular} es ${factorial(factorialACalcular)}`);
 
-arbolBinario.inorden(arbolBinario.raiz);
+console.log(`Arreglo original: ${valoresArbol}`);
+
+// Ordenamiento
+let arregloArbolBinarioInorden = [];
+arbolBinario.inorden(arbolBinario.raiz, arregloArbolBinarioInorden);
+console.log(`Inorden del árbol binario: ${arregloArbolBinarioInorden}`);
+
+let arbolBinarioNombres = new ArbolBinario();
+let nombres = ['J@vi', 'Lucía', 'Edgar', 'Armando', 'Pedro', 'Mitzi', 'Jesus', 'Roman', 'Jorge', 'Mirza', 'Tona'];
+for(let i = 0; i < nombres.length; i++){
+    arbolBinarioNombres.insertar(nombres[i]);
+}
+let nombresOrdenados = [];
+arbolBinarioNombres.inorden(arbolBinarioNombres.raiz, nombresOrdenados);
+console.log(`Nombres desordenados: ${nombres}`);
+console.log(`Nombres ordenados: ${nombresOrdenados}`);
